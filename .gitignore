@@ -1,0 +1,5 @@
+# unlinked / private assets, never publish
+assets/Jiahong_Tang_CV.pdf
+assets/sfg_thumb.png
+assets/demo_lot.*
+.DS_Store

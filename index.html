@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jiahong Tang</title>
+<meta name="description" content="Jiahong Tang. Robot learning researcher at NTU and A*STAR SIMTech, Singapore: reinforcement learning for pretrained generative robotic manipulation policies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the standard academic homepage (bio, link row, news, thumbnail publication list),
+   set in one reading column of about 66 characters with a mono margin label per section. */
+/* Single theme by choice: white paper, black ink, grey for everything secondary. */
+:root{
+  --bg:#ffffff;            /* white */
+  --surface:#fafafa;       /* thumbnail and code backgrounds */
+  --fg:#000000;            /* black ink */
+  --fg-2:#222222;          /* running text */
+  --muted:#6a6a6a;
+  --line:#e0e0e0;
+  --accent:#000000;        /* links and rules: black */
+  --accent-soft:#f0f0f0;
+  --font-display:"Archivo",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --font-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --measure:68ch;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--font-body); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration-color:var(--line); text-underline-offset:3px; transition:text-decoration-color .15s, color .15s}
+a:hover{text-decoration-color:var(--accent)}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+h1,h2,h3{font-family:var(--font-display); text-wrap:balance; margin:0; letter-spacing:-.01em}
+p{margin:0}
+.label{font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+
+.page{max-width:960px; margin:0 auto; padding-inline:clamp(16px,4vw,40px); padding-block:0 56px}
+
+/* nav */
+.nav{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding-block:14px; border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.92); backdrop-filter:blur(8px);
+}
+.nav .brand{font-family:var(--font-display); font-weight:700; font-size:15px; text-decoration:none}
+.nav ul{display:flex; gap:20px; list-style:none; margin:0; padding:0; font-family:var(--font-mono); font-size:12.5px}
+.nav a{text-decoration:none; color:var(--muted)}
+.nav a:hover{color:var(--fg)}
+@media (max-width:560px){ .nav ul{gap:12px; font-size:11.5px} }
+
+/* header */
+.hero{display:grid; grid-template-columns:minmax(0,1fr); padding-block:52px 44px}
+@media (max-width:700px){ .hero{padding-block:32px 28px} }
+.hero h1{font-size:clamp(34px,5vw,44px); font-weight:800; line-height:1.05}
+.hero h1 .zh{font-family:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif; font-weight:500; font-size:.62em; color:var(--fg-2); white-space:nowrap}
+.hero .role{margin-top:8px; font-family:var(--font-display); font-size:15px; color:var(--fg-2); line-height:1.5}
+.bio{margin-top:20px; max-width:var(--measure); display:grid; gap:12px; color:var(--fg-2); font-size:17.5px}
+.bio b{color:var(--fg); font-weight:600}
+.bio a{color:var(--fg)}
+.linkrow{margin-top:20px; font-family:var(--font-display); font-weight:600; font-size:15px; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px}
+.linkrow a{text-decoration:none; color:var(--fg); border-bottom:1.5px solid var(--line)}
+.linkrow a:hover{border-color:var(--accent); color:var(--accent)}
+.linkrow .sl{color:var(--line); font-weight:400}
+
+/* sections */
+.sec{display:grid; grid-template-columns:140px minmax(0,1fr); gap:12px 40px; padding-block:38px; border-top:1px solid var(--line); scroll-margin-top:64px}
+@media (max-width:700px){ .sec{grid-template-columns:1fr; gap:8px 0; padding-block:30px} }
+.sec > .label{padding-top:6px}
+.sec h2{font-size:22px; font-weight:700; margin-bottom:14px}
+.prose{max-width:var(--measure); color:var(--fg-2); display:grid; gap:14px}
+.prose b{color:var(--fg); font-weight:600}
+.question{
+  font-family:var(--font-display); font-weight:600; font-size:19px; line-height:1.35; color:var(--fg);
+  border-left:3px solid var(--accent); padding-left:16px; margin-block:4px; max-width:var(--measure);
+}
+.dims{list-style:none; margin:4px 0 0; padding:0; display:grid; gap:6px; max-width:var(--measure); font-size:16px; color:var(--fg-2)}
+.dims b{color:var(--fg); font-weight:600; font-family:var(--font-display); font-size:14.5px}
+
+/* news */
+.news{list-style:none; margin:0; padding:0; display:grid; gap:10px; max-width:var(--measure)}
+.news li{display:grid; grid-template-columns:86px minmax(0,1fr); gap:16px; font-size:16px; color:var(--fg-2)}
+.news .d{font-family:var(--font-mono); font-size:12.5px; color:var(--muted); padding-top:4px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.news a{color:var(--fg)}
+
+/* publications: thumbnail + text, newest first */
+.pubs{list-style:none; margin:0; padding:0; display:grid; gap:0}
+.pub{display:grid; grid-template-columns:260px minmax(0,1fr); gap:24px; align-items:start; padding-block:24px}
+.pub + .pub{border-top:1px solid var(--line)}
+.pub:first-child{padding-top:0}
+@media (max-width:640px){ .pub{grid-template-columns:1fr; gap:12px} }
+.thumb{width:260px; max-width:100%; aspect-ratio:4/3; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surface); display:grid; place-items:center}
+.thumb img, .thumb video{width:100%; height:100%; object-fit:cover; display:block}
+.thumb.fit img{object-fit:contain; padding:8px; background:#fff}
+.thumb .ph{font-family:var(--font-mono); font-size:13px; color:var(--muted); letter-spacing:.04em}
+.pub .t{font-family:var(--font-display); font-weight:700; font-size:17px; line-height:1.35; max-width:var(--measure)}
+.pub .t a{text-decoration:none}
+.pub .t a:hover{color:var(--accent)}
+.pub .a{margin-top:4px; color:var(--fg-2); font-size:15.5px; max-width:var(--measure)}
+.pub .a b{color:var(--fg); font-weight:600}
+.pub .v{margin-top:3px; font-size:15px; color:var(--fg-2); max-width:var(--measure)}
+.pub .v em{font-style:italic}
+.pub .badge{display:inline-block; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); padding:2px 7px; border-radius:4px; margin-left:6px; vertical-align:1px}
+.pub .badge.muted{color:var(--muted); background:transparent; border:1px solid var(--line)}
+.pub .l{margin-top:5px; font-family:var(--font-display); font-weight:600; font-size:14px; display:flex; flex-wrap:wrap; gap:4px 8px}
+.pub .l a{text-decoration:underline; text-decoration-color:var(--line); color:var(--fg)}
+.pub .l a:hover{text-decoration-color:var(--fg)}
+.pub .l .sl{color:var(--line); font-weight:400}
+.pub .s{margin-top:7px; font-size:15.5px; color:var(--fg-2); max-width:var(--measure); line-height:1.5}
+.pub .s .tldr{font-family:var(--font-mono); font-size:11.5px; letter-spacing:.06em; color:var(--muted); margin-right:6px}
+.eqnote{font-family:var(--font-mono); font-size:11.5px; color:var(--muted); margin-top:6px}
+
+/* rows (experience, education) */
+.rows{display:grid; gap:16px; max-width:var(--measure)}
+.row{display:grid; grid-template-columns:140px minmax(0,1fr); gap:4px 20px}
+@media (max-width:560px){ .row{grid-template-columns:1fr; gap:2px} }
+.row .when{font-family:var(--font-mono); font-size:12.5px; color:var(--muted); padding-top:3px; font-variant-numeric:tabular-nums}
+.row .what{font-family:var(--font-display); font-weight:700; font-size:16px; line-height:1.35}
+.row .where{color:var(--fg-2); font-size:15.5px; margin-top:2px}
+.row .note{font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-top:4px}
+
+/* contact */
+.contact{max-width:var(--measure); display:grid; gap:12px; color:var(--fg-2)}
+.email{display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap}
+.email code{font-family:var(--font-mono); font-size:15px; background:var(--surface); border:1px solid var(--line); padding:6px 10px; border-radius:6px; user-select:all; color:var(--fg)}
+.copy{font-family:var(--font-mono); font-size:12px; padding:6px 10px; border:1px solid var(--line); border-radius:6px; background:transparent; color:var(--fg); cursor:pointer}
+.copy:hover{border-color:var(--fg)}
+.copy[data-done="1"]{border-color:var(--accent); color:var(--accent)}
+
+footer{border-top:1px solid var(--line); padding-top:20px; margin-top:8px; font-family:var(--font-mono); font-size:12px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav class="nav" aria-label="Sections">
+  <a class="brand" href="#top">Jiahong Tang</a>
+  <ul>
+    <li><a href="#news">News</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <h1>Jiahong Tang <span class="zh" lang="zh-Hans">(唐嘉鸿)</span></h1>
+    <div class="bio">
+      <p>Hi all! I am a master's student at <a href="https://www.ntu.edu.sg/" target="_blank" rel="noopener">Nanyang Technological University</a> (NTU). I am also a research intern at <a href="https://www.a-star.edu.sg/simtech" target="_blank" rel="noopener">A*STAR SIMTech</a>, where I am fortunate to be supervised by Dr. Haiyue Zhu. My research interests lie in <b>sample-efficient and reliable reinforcement learning for robotic manipulation</b> and <b>generative policies</b>. Before that, I received my bachelor's degree in Automation from Central South University (CSU).</p>
+    </div>
+    <div class="linkrow">
+      <span>Email</span><span class="sl">/</span>
+      <a href="mailto:tang0611@e.ntu.edu.sg">tang0611@e.ntu.edu.sg</a>
+      <!-- Add when available:
+      <span class="sl">/</span><a href="https://scholar.google.com/citations?user=XXXX" target="_blank" rel="noopener">Google Scholar</a>
+      <span class="sl">/</span><a href="https://github.com/XXXX" target="_blank" rel="noopener">GitHub</a>
+      -->
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="news">
+  <div class="label">News</div>
+  <ul class="news">
+    <li><span class="d">Sep 2026</span><span>Two papers accepted at CoRL 2026.</span></li>
+  </ul>
+</section>
+
+<section class="sec" id="publications">
+  <div class="label">Publications</div>
+  <div>
+    <ul class="pubs">
+
+      <li class="pub">
+        <div class="thumb"><video autoplay muted loop playsinline preload="metadata" poster="assets/awls_thumb.jpg" aria-label="Real-robot rollouts from the AWLS experiments"><source src="assets/awls_thumb.mp4" type="video/mp4"><img src="assets/awls_thumb.gif" alt="Real-robot Drawer-Cube rollout from the AWLS experiments"></video></div>
+        <div>
+          <div class="t"><a href="https://awls-corl2026.github.io/" target="_blank" rel="noopener">AWLS: Advantage-Weighted Latent Steering for One-Step Generative Robotic Manipulation Policies</a></div>
+          <div class="a"><b>Jiahong Tang</b>, Jiaju He, Zhiyuan Yang, Ruyang Han, Haiyue Zhu</div>
+          <div class="v"><em>Conference on Robot Learning (CoRL)</em>, 2026</div>
+          <div class="l">
+            <a href="https://awls-corl2026.github.io/" target="_blank" rel="noopener">project page</a><span class="sl">/</span>
+            <a href="https://arxiv.org/abs/2610.27736" target="_blank" rel="noopener">arXiv</a>
+          </div>
+          <div class="s"><span class="tldr">TL;DR</span>Keep the one-step generative policy frozen and steer its latent input toward higher-advantage actions.</div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="thumb"><video autoplay muted loop playsinline preload="metadata" poster="assets/frvla_thumb.jpg" aria-label="Real-robot rollouts from the FR-VLA experiments"><source src="assets/frvla_thumb.mp4" type="video/mp4"><img src="assets/frvla_thumb.gif" alt="Real-robot gear assembly rollout from the FR-VLA experiments"></video></div>
+        <div>
+          <div class="t"><a href="https://fr-vla.pages.dev/" target="_blank" rel="noopener">FR-VLA: Implicit Force Reasoning VLA for Contact-Rich Manipulation</a></div>
+          <div class="a">Jiaju He, Zhiyuan Yang, Ruyang Han, <b>Jiahong Tang</b>, Zhiping Lin, Haiyue Zhu</div>
+          <div class="v"><em>Conference on Robot Learning (CoRL)</em>, 2026</div>
+          <div class="l">
+            <a href="https://fr-vla.pages.dev/" target="_blank" rel="noopener">project page</a><span class="sl">/</span>
+            <a href="https://arxiv.org/abs/2610.25981" target="_blank" rel="noopener">arXiv</a>
+          </div>
+          <div class="s"><span class="tldr">TL;DR</span>A VLA that reasons about when force matters: from the visual and language context it reasons how much force should influence each action.</div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="education">
+  <div class="label">Education</div>
+  <div class="rows">
+    <div class="row">
+      <div class="when">Aug 2025 to present</div>
+      <div>
+        <div class="what">M.Sc. in Signal Processing and Machine Learning</div>
+        <div class="where">Nanyang Technological University, Singapore</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="when">Sep 2021 to Jun 2025</div>
+      <div>
+        <div class="what">B.Eng. in Automation</div>
+        <div class="where">Central South University, Changsha, China</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Jiahong Tang · Singapore</span>
+  <span>Updated October 2026</span>
+</footer>
+
+</div>
+
+</body>
+</html>
